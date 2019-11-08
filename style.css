@@ -1,1 +1,9 @@
 /* CSS Styling Sheet */
+
+#jumbotron {
+    background-color: grey;
+    border-color: black;
+}
+h1 {
+    text-align: center;
+}
