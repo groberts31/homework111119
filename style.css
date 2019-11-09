@@ -1,9 +1,10 @@
 /* CSS Styling Sheet */
+background
 
 #jumbotron {
     background-color: grey;
     width: 50%;
-    margin: 10px 10px 10px 10px;    
+    margin: 10%;
 }
 
 h1 {
