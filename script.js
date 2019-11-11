@@ -18,27 +18,27 @@ var myQues = questions.length - 1;
 
 function renderMyQuiz() {
     if (Counter <= myQues) {
-        var currentQ = questions[Counter].quizQuestions;
+        var currentQ = questions[Counter].title;
         quizQuestionsEl.innerHTML = currentQ;
         
 
         var btn1 = document.getElementById("btn1");
-        btn1.textContent = questions[Counter].options[0];
+        btn1.textContent = questions[Counter].choices[0];
         btn1.style.display = "inline";
         possAnsEl.appendChild(btn1);
 
         var btn2 = document.getElementById("btn2");
-        btn2.textContent = questions[Counter].options[1];
+        btn2.textContent = questions[Counter].choices[1];
         btn2.style.display = "inline";
         possAnsEl.appendChild(btn2);
 
         var btn3 = document.getElementById("btn3");
-        btn3.textContent = questions[Counter].options[2];
+        btn3.textContent = questions[Counter].choices[2];
         btn3.style.display = "inline";
         possAnsEl.appendChild(btn3);
 
         var btn4 = document.getElementById("btn4");
-        btn4.textContent = questions[Counter].options[3];
+        btn4.textContent = questions[Counter].choices[3];
         btn4.style.display = "inline";
         possAnsEl.appendChild(btn4);
     }
@@ -47,7 +47,7 @@ function renderMyQuiz() {
     }
 }
 possAnsEl.addEventListener("click", function (event) {
-    if (event.target.textContent == questions[Counter].correctAnswer) {
+    if (event.target.textContent == questions[Counter].answer) {
         alert("You're Correct!!!");
         scoreEl++;
     }
