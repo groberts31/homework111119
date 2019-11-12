@@ -17,11 +17,16 @@ var userInfo = [];
 var scoreInfo = [];
 var highscoresEl = document.querySelector("#highScoresBtn");
 
+// Function to start quiz
+
 document.getElementById("startBtn").onclick = function (myQuiz) {
     disableButton();
     renderMyQuiz();
     setTimer();
 }
+
+// Function for timer for questions
+
 var timeLeft = 0;
 var stopTimer = false;
 
@@ -40,6 +45,9 @@ function setTimer() {
         }
     }, 1000);
 }
+
+// Function to ask questions and give options for quiz
+
 var Counter = 0;
 var myQues = questions.length - 1;
 
@@ -74,6 +82,9 @@ function renderMyQuiz() {
         ResultsFun();
     }
 }
+
+// Alerts for answers to questions
+
 possAnsEl.addEventListener("click", function (event) {
     if (event.target.textContent == questions[Counter].answer) {
         alert("You're Correct!!!");
@@ -85,9 +96,15 @@ possAnsEl.addEventListener("click", function (event) {
     Counter++;
     renderMyQuiz();
 })
+
+// Removes StartQuiz button when quiz has started
+
 function disableButton() {
     document.getElementById("quizGo").style.display = "none";
 }
+
+// Function that determines score
+
 function ResultsFun() {
     possAnsEl.style.display = "none";
     quizQuestionsEl.style.display = "none";
@@ -98,6 +115,8 @@ function ResultsFun() {
     showScore.textContent = "Calculate Score";
     resultEl.appendChild(showScore);
 }
+
+// Function to calculate score
 
 document.getElementById("score").onclick = function (myQuiz) {
     score = scoreEl * 10;
@@ -113,6 +132,8 @@ document.getElementById("score").onclick = function (myQuiz) {
     input.style.display = "block";
 }
 
+// Function to store initials and scores
+
 function storeInitials() {
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
 }
@@ -120,11 +141,16 @@ function storeScores() {
     localStorage.setItem("scoreInfo", JSON.stringify(scoreInfo));
 }
 
+// Function to show high score
+
 highscoresEl.addEventListener("click", function (event) {
     event.preventDefault();
     highScore();
     highScorePoints();
 });
+
+// Function to submit user initials
+
 submitInitials.addEventListener("click", function (event) {
     event.preventDefault();
     var userInitials = userInput.value.trim();
@@ -137,6 +163,9 @@ submitInitials.addEventListener("click", function (event) {
     storeInitials();
     storeScores();
 });
+
+// Saving initials and producing them
+
 function highScore() {
     var savedInitials = JSON.parse(localStorage.getItem("userInfo"));
     if (savedInitials !== null) {
@@ -154,6 +183,9 @@ function renderUserInitials() {
         initialsList.appendChild(li);
     }
 }
+
+// Saving high scores and producing them
+
 function highScorePoints() {
     var storedScores = JSON.parse(localStorage.getItem("scoreInfo"));
 
@@ -171,4 +203,4 @@ function renderUserScores() {
         li.setAttribute("data-index", i);
         scoreList.appendChild(li);
     }
-}
+};
