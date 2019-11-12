@@ -88,7 +88,7 @@ function setTimer(){
     }
     if (timeLeft == 0){
       clearInterval(timerInt);
-      message.textContent = "That's All You Get!!!"
+      alert("You're final score is: " + scoreEl);
       ResultsFun();
     }
   }, 1000);
