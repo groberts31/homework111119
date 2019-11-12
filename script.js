@@ -9,6 +9,8 @@ var answersEl;
 var timerEl = document.querySelector("#timer");
 var initialsList = document.querySelector("#userInitials");
 var scoreList = document.querySelector("#highScores");
+var submitInitials = document.querySelector("#submitInitials");
+var finalEl;
 
 document.getElementById("startBtn").onclick = function (myQuiz) {
     disableButton();
@@ -97,6 +99,17 @@ function ResultsFun() {
     showScore.textContent = "Calculate Score";
     resultEl.appendChild(showScore);
 }
+
 document.getElementById("score").onclick = function (myQuiz) {
-    alert(scoreEl);
+    score = scoreEl * 10;
+    var timeBonus = 0;
+    if (timeLeft >= 40) {
+        timeBonus = 50;
+    }
+    else {
+        timeBonus = 0;
+    }
+    finalEl = score + timeBonus;
+    yourScore.textContent = "Final Score is " + final;
+    input.style.display = "block";
 }
