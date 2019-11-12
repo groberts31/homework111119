@@ -6,11 +6,13 @@ var possAnsEl = document.querySelector("#possAnsBtns");
 var resultEl = document.querySelector("#result");
 var scoreEl = 0;
 var answersEl;
+var timerEl = document.querySelector("#timer");
 
 
 document.getElementById("startBtn").onclick = function (myQuiz) {
     disableButton();
     renderMyQuiz();
+    setTimer();
 }
 
 var Counter = 0;
@@ -20,7 +22,7 @@ function renderMyQuiz() {
     if (Counter <= myQues) {
         var currentQ = questions[Counter].title;
         quizQuestionsEl.innerHTML = currentQ;
-        
+
 
         var btn1 = document.getElementById("btn1");
         btn1.textContent = questions[Counter].choices[0];
@@ -72,4 +74,22 @@ function ResultsFun() {
 }
 document.getElementById("score").onclick = function (myQuiz) {
     alert(scoreEl);
+}
+
+var timeLeft = 0;
+var ended = false;
+function setTimer(){
+  timeLeft = (questions.length * 15);
+  var timerInt = setInterval(function(){
+    timeLeft--;
+    timerEl.textContent = timeLeft + " seconds left";
+    if (ended == true){
+      clearInterval(timerInt);
+    }
+    if (timeLeft == 0){
+      clearInterval(timerInt);
+      message.textContent = "That's All You Get!!!"
+      showResults();
+    }
+  }, 1000);
 }
