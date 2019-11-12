@@ -1,5 +1,7 @@
 // JavaScript vars and functions listed below
 
+// Vars listed for functions below
+
 var startBtnEl = document.querySelector("#startBtn");
 var quizQuestionsEl = document.querySelector("#qQues");
 var possAnsEl = document.querySelector("#possAnsBtns");
@@ -11,16 +13,15 @@ var initialsList = document.querySelector("#userInitials");
 var scoreList = document.querySelector("#highScores");
 var submitInitials = document.querySelector("#submitInitials");
 var finalEl;
-var userArr = [];
-var scoreArr = [];
-var viewHighScores = document.querySelector("#viewHighScores");
+var userInfo = [];
+var scoreInfo = [];
+var highscoresEl = document.querySelector("#highScoresBtn");
 
 document.getElementById("startBtn").onclick = function (myQuiz) {
     disableButton();
     renderMyQuiz();
     setTimer();
 }
-
 var timeLeft = 0;
 var stopTimer = false;
 
@@ -39,9 +40,6 @@ function setTimer() {
         }
     }, 1000);
 }
-
-
-
 var Counter = 0;
 var myQues = questions.length - 1;
 
@@ -75,8 +73,6 @@ function renderMyQuiz() {
         stopTimer = true;
         ResultsFun();
     }
-
-
 }
 possAnsEl.addEventListener("click", function (event) {
     if (event.target.textContent == questions[Counter].answer) {
@@ -118,42 +114,40 @@ document.getElementById("score").onclick = function (myQuiz) {
 }
 
 function storeInitials() {
-    localStorage.setItem("userArr", JSON.stringify(userArr));
+    localStorage.setItem("userInfo", JSON.stringify(userInfo));
 }
 function storeScores() {
-    localStorage.setItem("scoreArr", JSON.stringify(scoreArr));
+    localStorage.setItem("scoreInfo", JSON.stringify(scoreInfo));
 }
 
-viewHighScores.addEventListener("click", function (event) {
+highscoresEl.addEventListener("click", function (event) {
     event.preventDefault();
     highScore();
     highScorePoints();
-})
-
-
+});
 submitInitials.addEventListener("click", function (event) {
     event.preventDefault();
     var userInitials = userInput.value.trim();
     if (userInitials === "") {
         return;
     }
-    userArr.push(userInitials);
-    scoreArr.push(finalEl);
+    userInfo.push(userInitials);
+    scoreInfo.push(finalEl);
     userInput.value = "";
     storeInitials();
     storeScores();
 });
 function highScore() {
-    var storedInitials = JSON.parse(localStorage.getItem("userArr"));
-    if (storedInitials !== null) {
-        userArr = storedInitials;
+    var savedInitials = JSON.parse(localStorage.getItem("userInfo"));
+    if (savedInitials !== null) {
+        userInfo = savedInitials;
     }
     renderUserInitials();
 }
 function renderUserInitials() {
     initialsList.innerHTML = "";
-    for (var i = 0; i < userArr.length; i++) {
-        var user = userArr[i];
+    for (var i = 0; i < userInfo.length; i++) {
+        var user = userInfo[i];
         var li = document.createElement("li");
         li.textContent = user;
         li.setAttribute("data-index", i);
@@ -161,17 +155,17 @@ function renderUserInitials() {
     }
 }
 function highScorePoints() {
-    var storedScores = JSON.parse(localStorage.getItem("scoreArr"));
+    var storedScores = JSON.parse(localStorage.getItem("scoreInfo"));
 
     if (storedScores !== null) {
-        scoreArr = storedScores;
+        scoreInfo = storedScores;
     }
     renderUserScores();
 }
 function renderUserScores() {
     scoreList.innerHTML = "";
-    for (var i = 0; i < scoreArr.length; i++) {
-        var score = scoreArr[i];
+    for (var i = 0; i < scoreInfo.length; i++) {
+        var score = scoreInfo[i];
         var li = document.createElement("li");
         li.textContent = score;
         li.setAttribute("data-index", i);
