@@ -8,39 +8,32 @@ var scoreEl = 0;
 var answersEl;
 var timerEl = document.querySelector("#timer");
 
+document.getElementById("startBtn").onclick = function (myQuiz) {
+    disableButton();
+    renderMyQuiz();
+    setTimer();
+}
+
 var timeLeft = 0;
-var ended = false;
+var stopTimer = false;
 
 function setTimer() {
     timeLeft = (questions.length * 15);
     var timerInt = setInterval(function () {
         timeLeft--;
         timerEl.textContent = timeLeft + " seconds left";
-        if ("Curly") {
-            clearInterval(timerInt);
-        }
-        if ("Round") {
-            clearInterval(timerInt);
-        }
-        if ("Angle") {
-            clearInterval(timerInt);
-        }
-        if ("Square") {
-            clearInterval(timerInt);
-        }
-        if (timeLeft == 0) {
+        if (timeLeft === 0) {
             clearInterval(timerInt);
             alert("You're final score is: " + scoreEl);
             ResultsFun();
         }
+        if (stopTimer == true) {
+            clearInterval(timerInt);
+        }
     }, 1000);
 }
 
-document.getElementById("startBtn").onclick = function (myQuiz) {
-    disableButton();
-    renderMyQuiz();
-    setTimer();
-}
+
 
 var Counter = 0;
 var myQues = questions.length - 1;
@@ -72,9 +65,11 @@ function renderMyQuiz() {
         possAnsEl.appendChild(btn4);
     }
     else {
+        stopTimer = true;
         ResultsFun();
-        ended = false;
     }
+
+
 }
 possAnsEl.addEventListener("click", function (event) {
     if (event.target.textContent == questions[Counter].answer) {
