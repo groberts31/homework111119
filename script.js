@@ -11,6 +11,9 @@ var initialsList = document.querySelector("#userInitials");
 var scoreList = document.querySelector("#highScores");
 var submitInitials = document.querySelector("#submitInitials");
 var finalEl;
+var userArr = [];
+var scoreArr = [];
+var viewHighScores = document.querySelector("#viewHighScores");
 
 document.getElementById("startBtn").onclick = function (myQuiz) {
     disableButton();
@@ -103,13 +106,75 @@ function ResultsFun() {
 document.getElementById("score").onclick = function (myQuiz) {
     score = scoreEl * 10;
     var timeBonus = 0;
-    if (timeLeft >= 40) {
-        timeBonus = 50;
+    if (timeLeft >= 50) {
+        timeBonus = 25;
     }
     else {
         timeBonus = 0;
     }
     finalEl = score + timeBonus;
-    yourScore.textContent = "Final Score is " + final;
+    yourScore.textContent = "Final Score is " + finalEl;
     input.style.display = "block";
+}
+
+function storeInitials() {
+    localStorage.setItem("userArr", JSON.stringify(userArr));
+}
+function storeScores() {
+    localStorage.setItem("scoreArr", JSON.stringify(scoreArr));
+}
+
+viewHighScores.addEventListener("click", function (event) {
+    event.preventDefault();
+    highScore();
+    highScorePoints();
+})
+
+
+submitInitials.addEventListener("click", function (event) {
+    event.preventDefault();
+    var userInitials = userInput.value.trim();
+    if (userInitials === "") {
+        return;
+    }
+    userArr.push(userInitials);
+    scoreArr.push(finalEl);
+    userInput.value = "";
+    storeInitials();
+    storeScores();
+});
+function highScore() {
+    var storedInitials = JSON.parse(localStorage.getItem("userArr"));
+    if (storedInitials !== null) {
+        userArr = storedInitials;
+    }
+    renderUserInitials();
+}
+function renderUserInitials() {
+    initialsList.innerHTML = "";
+    for (var i = 0; i < userArr.length; i++) {
+        var user = userArr[i];
+        var li = document.createElement("li");
+        li.textContent = user;
+        li.setAttribute("data-index", i);
+        initialsList.appendChild(li);
+    }
+}
+function highScorePoints() {
+    var storedScores = JSON.parse(localStorage.getItem("scoreArr"));
+
+    if (storedScores !== null) {
+        scoreArr = storedScores;
+    }
+    renderUserScores();
+}
+function renderUserScores() {
+    scoreList.innerHTML = "";
+    for (var i = 0; i < scoreArr.length; i++) {
+        var score = scoreArr[i];
+        var li = document.createElement("li");
+        li.textContent = score;
+        li.setAttribute("data-index", i);
+        scoreList.appendChild(li);
+    }
 }
