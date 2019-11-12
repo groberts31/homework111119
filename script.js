@@ -8,6 +8,33 @@ var scoreEl = 0;
 var answersEl;
 var timerEl = document.querySelector("#timer");
 
+var timeLeft = 0;
+var ended = false;
+
+function setTimer() {
+    timeLeft = (questions.length * 15);
+    var timerInt = setInterval(function () {
+        timeLeft--;
+        timerEl.textContent = timeLeft + " seconds left";
+        if ("Curly") {
+            clearInterval(timerInt);
+        }
+        if ("Round") {
+            clearInterval(timerInt);
+        }
+        if ("Angle") {
+            clearInterval(timerInt);
+        }
+        if ("Square") {
+            clearInterval(timerInt);
+        }
+        if (timeLeft == 0) {
+            clearInterval(timerInt);
+            alert("You're final score is: " + scoreEl);
+            ResultsFun();
+        }
+    }, 1000);
+}
 
 document.getElementById("startBtn").onclick = function (myQuiz) {
     disableButton();
@@ -46,6 +73,7 @@ function renderMyQuiz() {
     }
     else {
         ResultsFun();
+        ended = false;
     }
 }
 possAnsEl.addEventListener("click", function (event) {
@@ -76,20 +104,3 @@ document.getElementById("score").onclick = function (myQuiz) {
     alert(scoreEl);
 }
 
-var timeLeft = 0;
-var ended = false;
-function setTimer(){
-  timeLeft = (questions.length * 15);
-  var timerInt = setInterval(function(){
-    timeLeft--;
-    timerEl.textContent = timeLeft + " seconds left";
-    if (ended == true){
-      clearInterval(timerInt);
-    }
-    if (timeLeft == 0){
-      clearInterval(timerInt);
-      alert("You're final score is: " + scoreEl);
-      ResultsFun();
-    }
-  }, 1000);
-}
