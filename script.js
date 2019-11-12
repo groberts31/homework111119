@@ -89,7 +89,7 @@ function setTimer(){
     if (timeLeft == 0){
       clearInterval(timerInt);
       message.textContent = "That's All You Get!!!"
-      showResults();
+      ResultsFun();
     }
   }, 1000);
 }
