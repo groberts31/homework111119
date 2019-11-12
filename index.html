@@ -2,6 +2,8 @@
 <html lang="en-us">
 
 <head>
+    <!-- Stylesheets listed below -->
+
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -11,14 +13,22 @@
 </head>
 
 <body>
+    <!-- Jumbotron for quiz -->
+
     <div class="jumbotron" id="jumbotron1">
         <h1>My HTML Quiz Game</h1>
         <br>
+        
+        <!-- Buttons for starting quiz and showing high scores -->
+
         <div id="quizGo">
             <button type="button" id="startBtn">Begin Quiz</button>
             <br>
             <button type="button" id="highScoresBtn">Click to View High Scores</button>
         </div>
+        
+        <!-- Timer, Questions and Choices will show below -->
+
         <div id="timer"></div>
         <br>
         <div id="qQues"></div>
@@ -35,6 +45,9 @@
             <button type="button" id="countDown" style="display: none"></button>
         </div>
         <br>
+
+        <!-- Button to show score and text box for initials -->
+
         <div id="result">
             <button type="button" id="score" style="display: none"></button>
         </div>
@@ -42,6 +55,8 @@
             <input type="text" class="form-control" id="userInput" placeholder="Please Add Initials">
             <button type="button" id="submitInitials">Submit</button>
         </form>
+
+<!-- Second jumbotron to store high scores and initials-->
 
         <div class="jumbotron" id="jumbotron2">
             <div id="yourScore"></div>
@@ -55,6 +70,7 @@
 
     </div>
 
+    <!-- Javascript sheets used listed below -->
 
     <script type="text/Javascript" src="questions.js"></script>
     <script type="text/Javascript" src="script.js"></script>
