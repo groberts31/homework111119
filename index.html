@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="jumbotron" id="jumbotron">
+    <div class="jumbotron" id="jumbotron1">
         <h1>My HTML Quiz Game</h1>
         <br>
         <div id="quizGo">
@@ -35,13 +35,20 @@
         </div>
         <br>
         <br>
-            <div id="result">
-                <button type="button" id="score" style="display: none"></button>
-            </div>
-
-            <script type="text/Javascript" src="questions.js"></script>
-            <script type="text/Javascript" src="script.js"></script>
+        <div id="result">
+            <button type="button" id="score" style="display: none"></button>
         </div>
+        <div class="jumbotron" id="jumbotron2">
+            <h1>High Scores</h1>
+            <div id="userInfo">
+                <ul id="userInitials"></ul>
+                <ul id="highScores"></ul>
+            </div>
+        </div>
+
+    </div>
+    <script type="text/Javascript" src="questions.js"></script>
+    <script type="text/Javascript" src="script.js"></script>
 </body>
 
 </html>

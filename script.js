@@ -7,6 +7,8 @@ var resultEl = document.querySelector("#result");
 var scoreEl = 0;
 var answersEl;
 var timerEl = document.querySelector("#timer");
+var initialsList = document.querySelector("#userInitials");
+var scoreList = document.querySelector("#highScores");
 
 document.getElementById("startBtn").onclick = function (myQuiz) {
     disableButton();
@@ -98,4 +100,3 @@ function ResultsFun() {
 document.getElementById("score").onclick = function (myQuiz) {
     alert(scoreEl);
 }
-
